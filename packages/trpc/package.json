@@ -15,7 +15,7 @@
     "build": "tsc --project tsconfig.json",
     "test": "vitest"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@trpc/server": "^11.7.1"
   }
 }

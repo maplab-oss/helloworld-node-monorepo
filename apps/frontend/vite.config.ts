@@ -11,8 +11,6 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-    conditions: ["import"],
-    preserveSymlinks: true,
   },
   optimizeDeps: {
     include: ["react", "react-dom", "scheduler"],
