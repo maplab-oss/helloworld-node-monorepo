@@ -1,0 +1,24 @@
+{
+  "folders": [
+    {
+      "name": "frontend",
+      "path": "./apps/frontend"
+    },
+    {
+      "name": "backend",
+      "path": "./apps/backend"
+    },
+    {
+      "name": "config",
+      "path": "./packages/config"
+    },
+    {
+      "name": "trpc",
+      "path": "./packages/trpc"
+    },
+    {
+      "name": "local",
+      "path": "."
+    }
+  ]
+}
