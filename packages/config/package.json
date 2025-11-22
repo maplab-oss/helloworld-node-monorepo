@@ -12,7 +12,6 @@
   },
   "scripts": {
     "dev": "tsc --watch --project tsconfig.json",
-    "build": "tsc --project tsconfig.json",
-    "test": "vitest"
+    "build": "tsc --project tsconfig.json"
   }
 }
