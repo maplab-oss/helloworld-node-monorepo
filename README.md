@@ -10,8 +10,8 @@ Build end to end typescript apps with:
 - eslint
 - zapper
 - zod
+- Vitest
 - tRPC (wip 🚧)
 - shadcn/ui (wip 🚧)
-- Vitest (wip 🚧)
 - Clerk (wip 🚧)
 - BullMQ (wip 🚧)

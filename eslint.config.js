@@ -15,6 +15,7 @@ export default [
         project: [
           "./etc/tsconfig.base.json",
           "./apps/**/tsconfig.json",
+          "./apps/**/tsconfig.app.json",
           "./packages/**/tsconfig.json",
         ],
       },
