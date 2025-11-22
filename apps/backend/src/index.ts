@@ -2,7 +2,6 @@ import Fastify from "fastify";
 import cors from "@fastify/cors";
 import { isProd, port } from "./config";
 import { helloWorldRouter } from "./routers/helloWorld";
-import { healthRouter } from "./routers/health";
 
 const app = Fastify({
   trustProxy: true,
@@ -17,7 +16,7 @@ await app.register(cors, {
 });
 
 await app.register(helloWorldRouter);
-await app.register(healthRouter);
+app.get("/health", (_, reply) => reply.status(200).send({ ok: true }));
 
 try {
   await app.listen({ port, host: isProd ? "0.0.0.0" : undefined });
