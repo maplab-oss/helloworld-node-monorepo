@@ -1,0 +1,10 @@
+# Files.
+**/.DS_Store
+**/.env
+
+# Folders.
+**/node_modules/
+**/.pnpm-store/
+**/.turbo/
+**/.zap/
+**/dist/
