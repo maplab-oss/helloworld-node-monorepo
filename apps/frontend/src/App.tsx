@@ -5,7 +5,7 @@ import z from "zod";
 
 const schema = z.object({ message: z.string() });
 
-function App() {
+export const App = () => {
   const [message, setMessage] = useState<string>("");
   const [trpcMessage, setTrpcMessage] = useState<string>("");
 
@@ -28,6 +28,4 @@ function App() {
       <p>{trpcMessage}</p>
     </>
   );
-}
-
-export default App;
+};
