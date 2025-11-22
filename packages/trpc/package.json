@@ -1,0 +1,21 @@
+{
+  "name": "@maplab-oss/helloworld-trpc",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "tsc --watch --project tsconfig.json",
+    "build": "tsc --project tsconfig.json",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@trpc/server": "^11.7.1"
+  }
+}

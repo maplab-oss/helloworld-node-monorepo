@@ -5,11 +5,15 @@ bare_metal:
     aliases: [be, b]
     cmd: pnpm --filter=@maplab-oss/helloworld-backend dev
     env:
+      - APP_ENV
       - BACKEND_PORT
   frontend:
     cmd: pnpm --filter=@maplab-oss/helloworld-frontend-vite dev
     env:
+      - APP_ENV
       - FRONTEND_VITE_PORT
       - VITE_API_BASE_URL
   config:
     cmd: pnpm --filter=@maplab-oss/helloworld-config dev
+  trpc:
+    cmd: pnpm --filter=@maplab-oss/helloworld-trpc dev

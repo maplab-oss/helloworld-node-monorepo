@@ -11,6 +11,8 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@maplab-oss/helloworld-trpc": "workspace:*",
+    "@trpc/client": "^11.7.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "scheduler": "^0.27.0"
