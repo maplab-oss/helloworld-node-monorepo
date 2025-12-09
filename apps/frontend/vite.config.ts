@@ -14,6 +14,18 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ["react", "react-dom", "scheduler"],
+    include: [
+      "react",
+      "react-dom",
+      "scheduler",
+      "@maplab-oss/helloworld-trpc",
+      "@maplab-oss/helloworld-config",
+    ],
+  },
+  ssr: {
+    noExternal: [
+      "@maplab-oss/helloworld-trpc",
+      "@maplab-oss/helloworld-config",
+    ],
   },
 });
