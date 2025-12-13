@@ -46,7 +46,7 @@ Complete these tasks to transform the template into the new project:
    - Ensure branding matches the project identity
 
 7. **Clean up**
-   - Delete this START_CHECKLIST.md file
+   - Delete this PROJECT_SETUP_PROMPT.md file
    - Remove any other template artifacts
    - Verify the project is ready for development
 
