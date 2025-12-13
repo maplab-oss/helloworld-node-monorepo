@@ -5,6 +5,7 @@ This is a template project that needs to be customized for a new project. Before
 **Required Context:**
 - **Project name**: The name of the new project (kebab-case for files/folders, PascalCase for display)
 - **Project description**: A one-liner explaining what the project does
+- **Repo URL**: Or something like someaccount/somerepo
 
 If this information is not in context, **ask the user for it before proceeding**.
 
@@ -40,12 +41,16 @@ Complete these tasks to transform the template into the new project:
    - Add context that will help AI agents work on this project
    - Reference any special considerations or gotchas
 
-6. **Update branding**
+6. **Update render.yaml**
+   - Set project name
+   - Set all the repo URLs to the new repo
+
+7. **Update branding**
    - Replace favicon in `apps/frontend/public/`
    - Update page title in `apps/frontend/index.html`
    - Ensure branding matches the project identity
 
-7. **Clean up**
+8. **Clean up**
    - Delete this PROJECT_SETUP_GUIDE.md file
    - Remove any other template artifacts
    - Verify the project is ready for development
