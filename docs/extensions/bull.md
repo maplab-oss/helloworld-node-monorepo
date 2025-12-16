@@ -379,18 +379,39 @@ tasks:
 
 **Update `render.yaml`:**
 ```yaml
-- type: worker
-  name: worker
-  runtime: node
-  buildCommand: corepack enable && pnpm install && pnpm turbo run build --filter=@your-org/worker
-  startCommand: pnpm --filter=@your-org/worker start
-  envVars:
-  - key: REDIS_URL
-    fromService:
-      name: redis
-      type: redis
-      property: connectionString
-  # Add other required env vars
+services:
+  # worker
+  - type: worker
+    name: worker
+    runtime: node
+    repo: https://github.com/your-org/your-app
+    plan: starter
+    region: singapore
+    buildCommand: corepack enable && pnpm install && pnpm turbo run build --filter=@your-org/worker
+    startCommand: pnpm --filter=@your-org/worker start
+    autoDeployTrigger: commit
+    envVars:
+    - key: MONGODB_URL
+      sync: false
+    - key: REDIS_URL
+      fromService:
+        name: redis
+        type: redis
+        property: connectionString
+    buildFilter:
+      paths:
+      - apps/worker/**
+      - packages/**
+      - package.json
+      - pnpm-lock.yaml
+
+  # redis
+  - type: redis
+    name: redis
+    region: singapore
+    plan: starter
+    maxmemoryPolicy: noeviction
+    ipAllowList: []
 ```
 
 ## Usage Patterns
