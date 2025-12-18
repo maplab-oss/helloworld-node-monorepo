@@ -1,6 +1,6 @@
 # Template for E2E typescript monorepos
 
-Running at [https://node-monorepo-template.vercel.app/](https://node-monorepo-template.vercel.app/)
+Running at [https://frontend-z0en.onrender.com/](https://frontend-z0en.onrender.com/)
 
 Build end to end typescript apps with:
 - PNPM workspace
