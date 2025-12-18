@@ -53,4 +53,6 @@ For each app, assign a random port so that it doesn't clash with other projects.
    - Remove any other template artifacts
    - Verify the project is ready for development
 
-**After completing this checklist, the project should be fully customized and ready for development.**
+9. **Run the project**
+   - Run `pnpm install`
+   - Run `zap up`
