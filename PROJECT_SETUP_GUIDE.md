@@ -57,3 +57,5 @@ For each app, assign a random port so that it doesn't clash with other projects.
 9. **Run the project**
    - Run `pnpm install`
    - Run `zap up`
+
+Finally explain to the user very briefly that all the changes are committed and how to view the frontend.
