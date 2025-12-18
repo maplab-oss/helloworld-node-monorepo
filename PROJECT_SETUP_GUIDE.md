@@ -25,9 +25,9 @@ Complete these tasks to transform the template into the new project:
    - Verify process names match the new project
 
 3. **Configure port numbers**
-   - Assign unique port numbers for frontend and backend
+   - Assign unique port numbers for all /apps
+   - Use etc/bin/randomport to get port numbers
    - Update all references in config files
-   - Ensure no conflicts with other local projects
 
 4. **Rewrite README.md**
    - Add project title and description
