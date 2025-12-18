@@ -1,17 +1,15 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import { fastifyTRPCPlugin } from "@trpc/server/adapters/fastify";
-import { isProd, port } from "./config";
+import { isProd, port, frontendOrigin } from "./config";
 import { appRouter } from "@maplab-oss/helloworld-trpc/server";
 
 const app = Fastify({
   trustProxy: true,
 });
 
-const frontendUrl = "https://node-monorepo-template.vercel.app";
-
 await app.register(cors, {
-  origin: isProd ? [frontendUrl] : true,
+  origin: isProd ? [frontendOrigin] : true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 });
