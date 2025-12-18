@@ -52,6 +52,7 @@ For each app, assign a random port so that it doesn't clash with other projects.
    - Delete this PROJECT_SETUP_GUIDE.md file
    - Remove any other template artifacts
    - Verify the project is ready for development
+   - Commit all changes with the message `init`
 
 9. **Run the project**
    - Run `pnpm install`
