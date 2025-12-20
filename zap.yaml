@@ -17,7 +17,7 @@ tasks:
   lint:
     cmds:
       - pnpm eslint . --fix
-  checks:
+  check:
     cmds:
       - pnpm eslint . --fix
       - pnpm turbo run typecheck
@@ -25,3 +25,7 @@ tasks:
     cmds:
       - pnpm turbo run build --filter=@maplab-oss/helloworld-backend
       - pnpm turbo run build --filter=@maplab-oss/helloworld-frontend
+  vitest:
+    aliases: [unit]
+    cmds:
+      - pnpm test
