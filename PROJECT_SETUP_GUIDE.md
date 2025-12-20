@@ -49,7 +49,7 @@ For each app, assign a random port so that it doesn't clash with other projects.
    - Create a base64 encoded favicon as well, see `etc/bin/emoji-favicon`
 
 8. **Clean up**
-   - Delete this PROJECT_SETUP_GUIDE.md file
+   - Delete PROJECT_SETUP_GUIDE.md and TODO.md
    - Remove any other template artifacts
    - Verify the project is ready for development
    - Commit all changes with the message `init`
