@@ -10,13 +10,13 @@ This guide covers setting up [BullMQ](https://docs.bullmq.io/) for background jo
 2. **Worker** - Standalone process that processes jobs from queues
 3. **Bull Board** - Web UI for monitoring queues (development only)
 
-### Queue Infrastructure in Shared Config
+### Queue Infrastructure in Shared System Package
 
-BullMQ connection and queue definitions live in the shared config package since they're used across multiple services (backend, worker, etc).
+BullMQ connection and queue definitions live in the shared system package since they're used across multiple services (backend, worker, etc).
 
-**Important**: Following the config pattern (see `docs/config.md`), the config package validates environment variables with Zod and uses lazy initialization for queues to avoid circular dependencies.
+**Important**: Following the config pattern (see `docs/config.md`), the system package validates environment variables with Zod and uses lazy initialization for queues to avoid circular dependencies.
 
-**`packages/config/src/env.ts`** - Environment validation:
+**`packages/system/src/env.ts`** - Environment validation:
 
 ```typescript
 import { z } from "zod";
@@ -31,7 +31,7 @@ const envSchema = z.object({
 export const env = envSchema.parse(process.env);
 ```
 
-**`packages/config/src/queue.ts`** - Redis connection:
+**`packages/system/src/queue.ts`** - Redis connection:
 
 ```typescript
 import Redis from "ioredis";
@@ -59,7 +59,7 @@ export const closeQueueConnection = async () => {
 };
 ```
 
-**`packages/config/src/queues.ts`** - Queue definitions (lazy initialization):
+**`packages/system/src/queues.ts`** - Queue definitions (lazy initialization):
 
 ```typescript
 import { Queue } from "bullmq";
@@ -89,7 +89,7 @@ This centralized approach means:
 
 ### 1. Install Dependencies
 
-Add to your shared config package:
+Add to your shared system package:
 ```bash
 pnpm add bullmq ioredis
 ```
@@ -99,9 +99,9 @@ Add to your backend (for Bull Board):
 pnpm add @bull-board/api @bull-board/fastify
 ```
 
-### 2. Add Environment Validation to Config
+### 2. Add Environment Validation to System Package
 
-Create `packages/config/src/env.ts`:
+Create `packages/system/src/env.ts`:
 ```typescript
 import { z } from "zod";
 
@@ -115,14 +115,14 @@ const envSchema = z.object({
 export const env = envSchema.parse(process.env);
 ```
 
-Export from `packages/config/src/index.ts`:
+Export from `packages/system/src/index.ts`:
 ```typescript
 export { env } from "./env";
 ```
 
-### 3. Add BullMQ to Shared Config
+### 3. Add BullMQ to Shared System Package
 
-Add to `packages/config/package.json`:
+Add to `packages/system/package.json`:
 ```json
 {
   "dependencies": {
@@ -133,7 +133,7 @@ Add to `packages/config/package.json`:
 }
 ```
 
-Create `packages/config/src/queue.ts`:
+Create `packages/system/src/queue.ts`:
 ```typescript
 import Redis from "ioredis";
 import { env } from "./env";
@@ -160,7 +160,7 @@ export const closeQueueConnection = async () => {
 };
 ```
 
-Create `packages/config/src/queues.ts` (using lazy initialization):
+Create `packages/system/src/queues.ts` (using lazy initialization):
 ```typescript
 import { Queue } from "bullmq";
 import { getQueueConnection } from "./queue";
@@ -179,7 +179,7 @@ export const getMyQueue = (): Queue => {
 
 **Critical**: Use lazy initialization (getter functions) for queues to avoid circular dependencies. Do not instantiate queues at module initialization time.
 
-Export from `packages/config/src/index.ts`:
+Export from `packages/system/src/index.ts`:
 ```typescript
 export { env } from "./env";
 export { getQueueConnection, closeQueueConnection } from "./queue";
@@ -193,7 +193,7 @@ Create `packages/<your-package>/src/queue/`:
 **worker.ts** - Worker implementation
 ```typescript
 import { Worker, Job as BullJob } from "bullmq";
-import { getQueueConnection, closeQueueConnection, getMyQueue } from "@your-org/config";
+import { getQueueConnection, closeQueueConnection, getMyQueue } from "@your-org/system";
 
 export interface MyJobData {
   // Define your job data structure
@@ -313,7 +313,7 @@ import Fastify from "fastify";
 import { createBullBoard } from "@bull-board/api";
 import { BullMQAdapter } from "@bull-board/api/bullMQAdapter";
 import { FastifyAdapter } from "@bull-board/fastify";
-import { getMyQueue } from "@your-org/config";
+import { getMyQueue } from "@your-org/system";
 import { env, isProd } from "./config";
 
 export const startBullBoard = async () => {
@@ -426,7 +426,7 @@ services:
 ### Enqueue a Job
 
 ```typescript
-import { getMyQueue } from "@your-org/config";
+import { getMyQueue } from "@your-org/system";
 
 await getMyQueue().add("job-name", {
   // job data
@@ -436,7 +436,7 @@ await getMyQueue().add("job-name", {
 ### With Options
 
 ```typescript
-import { getMyQueue } from "@your-org/config";
+import { getMyQueue } from "@your-org/system";
 
 await getMyQueue().add("job-name", jobData, {
   attempts: 3,

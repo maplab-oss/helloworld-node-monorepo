@@ -9,7 +9,7 @@
       "path": "./apps/backend"
     },
     {
-      "name": "config",
+      "name": "system",
       "path": "./packages/system"
     },
     {

@@ -214,4 +214,4 @@ Define Zod schemas and infer TypeScript types for your domain entities. Use sche
 
 ## Context Design
 
-Define a shared `AppContext` interface in the config package that includes common dependencies (db, redis, userId, etc.). Modules import this type and create their own tRPC instance with it. Modules access these via `ctx` in their procedures. If specific modules need additional dependencies, extend the base context interface.
+Define a shared `AppContext` interface in the system package that includes common dependencies (db, redis, userId, etc.). Modules import this type and create their own tRPC instance with it. Modules access these via `ctx` in their procedures. If specific modules need additional dependencies, extend the base context interface.
